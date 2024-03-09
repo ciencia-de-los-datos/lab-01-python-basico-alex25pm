@@ -11,6 +11,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+import csv
 
 
 def pregunta_01():
@@ -21,8 +22,20 @@ def pregunta_01():
     214
 
     """
-    return
 
+    # Abro el archivo CSV en modo lectura
+    with open('data.csv', 'r') as archivo_csv:
+    # Creo un objeto lector CSV
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        # convierto cada linea en una lista
+        lineas = list(lineas)
+
+        suma_segunda_columna = 0
+        # Itero sobre las filas de la lista
+        for linea in lineas:
+            suma_segunda_columna += int(linea[1])
+        #devuelvo la suma
+        return suma_segunda_columna
 
 def pregunta_02():
     """
@@ -39,7 +52,30 @@ def pregunta_02():
     ]
 
     """
-    return
+# Abro el archivo CSV en modo lectura
+    with open('data.csv', 'r') as archivo_csv:
+    # Creo un objeto lector CSV
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        # convierto cada linea en una lista
+        lineas = list(lineas)
+
+    lista1 = []
+    for linea in lineas:
+        lista1.append((linea[0], 1))
+                
+    diccionario = {}
+    for key, value in lista1:
+        if key not in diccionario.keys():
+            diccionario[key]= []
+        diccionario[key].append(value)
+
+    new_sequence = []
+    for key, value in diccionario.items():
+        tupla = (key, sum(value))
+        new_sequence.append(tupla)
+
+    sorted_sequence = sorted ( new_sequence, key = lambda x: x[0])
+    return sorted_sequence
 
 
 def pregunta_03():
@@ -57,7 +93,31 @@ def pregunta_03():
     ]
 
     """
-    return
+
+    # Abro el archivo CSV en modo lectura
+    with open('data.csv', 'r') as archivo_csv:
+    # Creo un objeto lector CSV
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        # convierto cada linea en una lista
+        lineas = list(lineas)
+
+    lista1 = []
+    for linea in lineas:
+        lista1.append((linea[0], int(linea[1])))
+                
+    diccionario = {}
+    for key, value in lista1:
+        if key not in diccionario.keys():
+            diccionario[key]= []
+        diccionario[key].append(value)
+
+    new_sequence = []
+    for key, value in diccionario.items():
+        tupla = (key, sum(value))
+        new_sequence.append(tupla)
+
+    sorted_sequence = sorted ( new_sequence, key = lambda x: x[0])
+    return sorted_sequence
 
 
 def pregunta_04():
@@ -82,8 +142,32 @@ def pregunta_04():
     ]
 
     """
-    return
 
+     # Abro el archivo CSV en modo lectura
+    with open('data.csv', 'r') as archivo_csv:
+    # Creo un objeto lector CSV
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        # convierto cada linea en una lista
+        lineas = list(lineas)
+
+    lista1 = []
+    for linea in lineas:
+        fecha = linea[2].split("-")
+        lista1.append((fecha[1], 1))
+                
+    diccionario = {}
+    for key, value in lista1:
+        if key not in diccionario.keys():
+            diccionario[key]= []
+        diccionario[key].append(value)
+
+    new_sequence = []
+    for key, value in diccionario.items():
+        tupla = (key, sum(value))
+        new_sequence.append(tupla)
+
+    sorted_sequence = sorted ( new_sequence, key = lambda x: x[0])
+    return sorted_sequence
 
 def pregunta_05():
     """
@@ -100,7 +184,28 @@ def pregunta_05():
     ]
 
     """
-    return
+    with open('data.csv', 'r') as archivo_csv:
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        lineas = list(lineas)
+
+    lista1 = []
+    for linea in lineas:
+        lista1.append((linea[0], int(linea[1])))
+                
+    diccionario = {}
+    for key, value in lista1:
+        if key not in diccionario.keys():
+            diccionario[key]= []
+        diccionario[key].append(value)
+    
+    new_sequence = []
+    for key, value in diccionario.items():
+        tupla = (key, max(value), min(value))
+        new_sequence.append(tupla)
+    
+    sorted_sequence = sorted ( new_sequence, key = lambda x: x[0])
+    
+    return sorted_sequence
 
 
 def pregunta_06():
@@ -125,7 +230,32 @@ def pregunta_06():
     ]
 
     """
-    return
+
+    with open('data.csv', 'r') as archivo_csv:
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        lineas = list(lineas)
+
+    lista1 = []
+    for linea in lineas:
+        datos = linea[4].split(",")
+        for key in datos:
+            key_valor= key.split(":")
+            lista1.append((key_valor[0],key_valor[1]))
+    
+    diccionario = {}
+    for par in lista1:
+        if par[0] not in diccionario.keys():
+            diccionario[par[0]]= []
+        diccionario[par[0]].append(int(par[1]))
+    
+    new_sequence = []
+    for key, value in diccionario.items():
+        tupla = (key, min(value), max(value))
+        new_sequence.append(tupla)
+           
+    sorted_sequence = sorted ( new_sequence, key = lambda x: x[0])
+    
+    return sorted_sequence
 
 
 def pregunta_07():
@@ -149,8 +279,30 @@ def pregunta_07():
     ]
 
     """
-    return
 
+    with open('data.csv', 'r') as archivo_csv:
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        lineas = list(lineas)
+
+    lista1 = []
+    for linea in lineas:
+        lista1.append((linea[1], linea[0]))
+                
+    diccionario = {}
+    for key, value in lista1:
+        if key not in diccionario.keys():
+            diccionario[key]= []
+        diccionario[key].append(value)
+        
+    new_sequence = []
+    for key, value in diccionario.items():
+        tupla = (int(key), value)
+        new_sequence.append(tupla)
+    
+    sorted_sequence = sorted ( new_sequence, key = lambda x: x[0])
+    
+    return sorted_sequence
+    
 
 def pregunta_08():
     """
@@ -174,7 +326,30 @@ def pregunta_08():
     ]
 
     """
-    return
+    with open('data.csv', 'r') as archivo_csv:
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        lineas = list(lineas)
+
+    # Inicializar un diccionario para almacenar las letras únicas
+    diccionario_letras = {}
+
+    for linea in lineas:
+        numero = int(linea[1])
+        letra = linea[0]
+
+        if numero not in diccionario_letras:
+            diccionario_letras[numero] = []
+
+        if letra not in diccionario_letras[numero]:
+            diccionario_letras[numero].append(letra)
+    
+    for numero, letras in diccionario_letras.items():
+        diccionario_letras[numero] = sorted(letras)
+
+    # Ordenar el diccionario por las claves
+    sorted_sequence = sorted(diccionario_letras.items(), key=lambda x: x[0])
+
+    return sorted_sequence
 
 
 def pregunta_09():
@@ -197,7 +372,25 @@ def pregunta_09():
     }
 
     """
-    return
+
+    with open('data.csv', 'r') as archivo_csv:
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        lineas = list(lineas)
+
+    diccionario = {}
+
+    for linea in lineas:
+        datos = linea[4].split(",")
+        for key_valor in datos:
+            key, valor = key_valor.split(":")
+            if key in diccionario:
+                diccionario[key] += 1
+            else:
+                diccionario[key] = 1
+
+    # Ordenar el diccionario por las claves
+    diccionario_ordenado = {k: v for k, v in sorted(diccionario.items())}
+    return diccionario_ordenado
 
 
 def pregunta_10():
@@ -218,8 +411,18 @@ def pregunta_10():
 
 
     """
-    return
 
+    with open('data.csv', 'r') as archivo_csv:
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        lineas = list(lineas)
+
+    tuplas=[]
+    for linea in lineas:
+        letras = linea[3].split(",")
+        dicc = linea[4].split(",")
+        tuplas.append((linea[0],len(letras),len(dicc)))
+
+    return tuplas
 
 def pregunta_11():
     """
@@ -239,8 +442,24 @@ def pregunta_11():
 
 
     """
-    return
+    with open('data.csv', 'r') as archivo_csv:
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        lineas = list(lineas)
+    
+    lista1 = []
+    for linea in lineas:
+        for item in linea[3].split(","):
+            lista1.append((item, int(linea[1])))
 
+    diccionario = {}
+    for key, value in lista1:
+        if key not in diccionario.keys():
+            diccionario[key] = 0
+        diccionario[key] = diccionario[key] + value
+
+    diccionario_ordenado = {k: v for k, v in sorted(diccionario.items())}
+
+    return diccionario_ordenado
 
 def pregunta_12():
     """
@@ -257,4 +476,25 @@ def pregunta_12():
     }
 
     """
-    return
+
+    with open('data.csv', 'r') as archivo_csv:
+        lineas = csv.reader(archivo_csv, delimiter='\t')
+        lineas = list(lineas)
+
+    tuplas=[]
+    for linea in lineas:
+        dicc = linea[4].split(",")
+        sum=0
+        for duo in dicc:
+            valor = duo.split(":")
+            sum += int(valor[1])
+        tuplas.append((linea[0],sum))
+    
+    diccionario = {}
+    for key, value in tuplas:
+        if key not in diccionario.keys():
+            diccionario[key] = 0
+        diccionario[key] = diccionario[key] + value
+
+    diccionario_ordenado = {k: v for k, v in sorted(diccionario.items())}
+    return diccionario_ordenado
